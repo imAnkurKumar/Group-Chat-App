@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chat App</title>
+    <link rel="stylesheet" href="/css/chat.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet" />
+  </head>
+  <body>
+    <div class="chat-container">
+      <aside class="user-list">
+        <h2>Users</h2>
+        <ul id="user-list"></ul>
+      </aside>
+      <main class="chat-window">
+        <div class="chat-header">
+          <h2>Group Chat</h2>
+          <button id="logout-btn">Logout</button>
+        </div>
+        <div class="chat-messages" id="chat-messages"></div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="message-input"
+            placeholder="Type your message here..." />
+          <button id="send-btn">Send</button>
+        </div>
+      </main>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/chat.js"></script>
+  </body>
+</html>
