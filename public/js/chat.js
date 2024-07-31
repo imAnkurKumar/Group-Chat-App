@@ -69,4 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   fetchUsers();
   fetchMessages();
+
+  setInterval(fetchMessages, 1000);
 });

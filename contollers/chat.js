@@ -3,17 +3,19 @@ const User = require("../models/user");
 
 const sendMessage = async (req, res, next) => {
   try {
-    const user = req.user;
     const { content } = req.body;
+    const userId = req.user.id;
+    const name = req.user.name;
 
-    const newMessage = await Message.create({
-      name: user.name,
-      content: content,
-      userId: user.id,
+    const message = await Message.create({
+      name,
+      content,
+      userId,
     });
-    res.status(201).json({ message: "Message sent successfully", newMessage });
+
+    res.status(201).json({ message });
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).json({ message: "Server error" });
   }
 };
@@ -22,13 +24,17 @@ const getMessages = async (req, res, next) => {
   try {
     const messages = await Message.findAll({
       include: [{ model: User, attributes: ["name"] }],
+      order: [["createdAt", "DESC"]],
     });
 
     res.status(200).json({ messages });
   } catch (err) {
-    console.error(err);
+    console.log(err);
     res.status(500).json({ message: "Server error" });
   }
 };
 
-module.exports = { getMessages, sendMessage };
+module.exports = {
+  sendMessage,
+  getMessages,
+};
